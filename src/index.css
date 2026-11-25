@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    background-color: #040711;
+  }
+
+  body {
+    background-color: #040711;
+    color: #f1f5f9;
+    overflow-x: hidden;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Accessible keyboard focus ring */
+  :focus-visible {
+    outline: 2px solid #22d3ee;
+    outline-offset: 3px;
+    border-radius: 0.375rem;
+  }
+}
+
+/* Subtle architectural grid overlay */
+.bg-grid-pattern {
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.055) 1px, transparent 1px);
+}
+
+/* Ambient scan-line animation for illustrative UI mockups */
+@keyframes scanSweep {
+  0%,
+  100% {
+    transform: translateY(0%);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(180px);
+    opacity: 0.85;
+  }
+}
+
+@keyframes floatSubtle {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-scan-sweep {
+  animation: scanSweep 4.6s ease-in-out infinite;
+}
+
+.animate-float-subtle {
+  animation: floatSubtle 6s ease-in-out infinite;
+}
+
+/* Strict reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-scan-sweep,
+  .animate-float-subtle {
+    animation: none !important;
+    transform: none !important;
+  }
+}
